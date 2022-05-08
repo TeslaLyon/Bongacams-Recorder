@@ -81,3 +81,6 @@ Some users found that no files were being made which was due to either software 
 
 ### Large Files and bandwidth usage
 Because the streams are intended to be watched live, there is little compression on the video. This can cause very large files and heavy internet usage as the max settings for some streamers are 4k/60fps and youtube-dl defaults to best available options. Internet usage can be reduced by using a lower quality and file size can be further reduced by compressing the file (will causes heavy CPU usage). All this can be done with youtube-dl config options. 
+
+## LICENSE
+MIT

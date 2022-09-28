@@ -66,21 +66,25 @@ class Bot:
                 self.config["streamers"].append([new_streamer, False])
 
     def is_online(self, username):
-        url = "https://cn.bongacams.com/tools/amf.php?x-country=jp"
+        url = "https://cn.bongacams.net/tools/amf.php?x-country=jp"
         headers = {
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
             "X-Requested-With": "XMLHttpRequest",
             "Connection": "close",
-            "referer": "https://cn.bongacams.com/"+username
+            "referer": "https://cn.bongacams.net/"+username
             }
         data = {"args[]": username, "method": "getRoomData"}
         # self.logger.info(headers)
         try:
             time.sleep(3)  # fix issue 30
+            proxy_ip = {
+                "http":"http://127.0.0.1:7890",
+                "https":"http://127.0.0.1:7890"
+            }
             s = requests.session()
             # 关闭多余的连接
             s.keep_alive = False
-            r = s.post(url, headers=headers, data=data)
+            r = s.post(url, headers=headers, data=data, proxies=proxy_ip)
             # if r.json()["localData"]["videoServerUrl"] == "public":
             videoServerUrl = r.json()["localData"].get('videoServerUrl','null')
 

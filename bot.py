@@ -77,14 +77,14 @@ class Bot:
         # self.logger.info(headers)
         try:
             time.sleep(3)  # fix issue 30
-            proxy_ip = {
-                "http":"http://127.0.0.1:7890",
-                "https":"http://127.0.0.1:7890"
-            }
+#             proxy_ip = {
+#                 "http":"http://127.0.0.1:7890",
+#                 "https":"http://127.0.0.1:7890"
+#             }
             s = requests.session()
             # 关闭多余的连接
             s.keep_alive = False
-            r = s.post(url, headers=headers, data=data, proxies=proxy_ip)
+            r = s.post(url, headers=headers, data=data)
             # if r.json()["localData"]["videoServerUrl"] == "public":
             videoServerUrl = r.json()["localData"].get('videoServerUrl','null')
 
